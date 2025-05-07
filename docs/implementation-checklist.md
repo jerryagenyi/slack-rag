@@ -39,6 +39,20 @@ This document provides a detailed checklist for implementing the AI-Powered Slac
       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     );
     ```
+  - [ ] Create team_members table:
+    ```sql
+    CREATE TABLE IF NOT EXISTS team_members (
+      id SERIAL PRIMARY KEY,
+      slack_user_id TEXT NOT NULL UNIQUE,
+      display_name TEXT,
+      email TEXT,
+      role TEXT,
+      team TEXT,
+      active BOOLEAN DEFAULT TRUE,
+      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+      updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    );
+    ```
   - [ ] Create vector search index:
     ```sql
     CREATE INDEX ON documents USING ivfflat (embedding vector_cosine_ops) WITH (lists = 100);

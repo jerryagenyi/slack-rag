@@ -51,21 +51,7 @@
 
 ## 3. Database Schema
 
-### 3.1 daily_updates Table
-- `id` (SERIAL PRIMARY KEY)
-- `slack_user_id` (TEXT)
-- `update_text` (TEXT)
-- `timestamp` (TIMESTAMP)
-- `summary` (TEXT)
-- `created_at` (TIMESTAMP)
-
-### 3.2 documents Table
-- `id` (SERIAL PRIMARY KEY)
-- `content` (TEXT)
-- `metadata` (JSONB)
-- `embedding` (vector(1536))
-- `daily_update_id` (INTEGER, FOREIGN KEY)
-- `created_at` (TIMESTAMP)
+For detailed database schema information, see [database-schema.md](database-schema.md).
 
 ## 4. Additional Resources
 

@@ -1,8 +1,8 @@
 # AI-Powered Slackbot (slack-rag)
 
-A general-purpose AI-powered Slackbot that monitors channels for updates, summarizes them using LLMs, and stores them in a vector database for future reference and retrieval.
+A general-purpose AI-powered Slackbot that monitors channels for updates, summarizes them using LLMs, and stores them in a vector database for future reference and retrieval. This project can be adapted for any organization using Slack.
 
-**Current Implementation:** This project is currently being customized for [SkillUp Life](https://www.skilledup.life) to create a Slack integration that monitors daily team updates, summarizes them using AI, and makes the knowledge searchable through vector embeddings.
+**Current Implementation:** This project is currently being customized for [SkillUp Life](https://www.skilledup.life) to create a Slack integration that monitors daily team updates, summarizes them using AI, and makes the knowledge searchable through vector embeddings. However, the architecture is designed to be easily adaptable to other organizations and use cases.
 
 ## Overview
 
@@ -30,15 +30,29 @@ This project uses N8N as an automation engine to monitor a Slack channel for dai
 ```
 slack-rag/
 ├── .github/workflows/        # GitHub Actions workflows
-├── n8n/workflows/            # N8N workflow JSON files
+├── n8n/
+│   ├── workflows/            # N8N workflow JSON files
+│   ├── credentials/          # Credential templates (no sensitive data)
+│   └── examples/             # Example data for testing
 ├── docs/                     # Documentation
 ├── config/                   # Configuration files
+├── references/               # Reference materials
 ├── scripts/                  # Utility scripts
 ├── README.md                 # This file
 └── LICENSE                   # License information
 ```
 
 For more details on the project structure, see [project-structure.md](docs/project-structure.md).
+
+### N8N Credentials
+
+The `n8n/credentials/` folder contains template files for the credentials needed by the N8N workflows. These templates:
+
+1. Do not contain actual sensitive data (API keys, tokens, etc.)
+2. Serve as documentation for what credentials are needed
+3. Help new developers understand the required configuration
+
+When setting up the project, you'll need to create these credentials in your N8N instance using the templates as a guide.
 
 ## Getting Started
 
@@ -78,9 +92,9 @@ For more details on the project structure, see [project-structure.md](docs/proje
 - [Implementation Checklist](docs/implementation-checklist.md)
 - [Project Structure](docs/project-structure.md)
 - [Technical Specifications](docs/technical-specifications.md)
+- [Database Schema](docs/database-schema.md)
 - [About SkillUp Life](docs/about-skilledup-life.md)
 - [Daily Update Format](docs/daily-update-format.md)
-- [Team Member Management](docs/team-member-management.md)
 - [N8N Workflow Organization](docs/n8n-workflow-organization.md)
 - [Deployment Guide](docs/deployment-guide.md)
 - [Testing Strategy](docs/testing-strategy.md)

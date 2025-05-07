@@ -36,9 +36,18 @@ Where:
 - `[function]` describes the primary function of the workflow
 - `[version]` indicates the version number (v1, v2, etc.)
 
+## Workflow Organization Approach
+
+For this project, we are using a **modular workflow approach** with multiple specialized workflows rather than a single monolithic workflow. This approach offers several advantages:
+
+1. **Maintainability**: Smaller workflows are easier to understand and maintain
+2. **Reliability**: Issues in one workflow don't affect others
+3. **Scalability**: New features can be added as separate workflows
+4. **Performance**: Each workflow can be optimized independently
+
 ## Workflow Types
 
-The project uses multiple specialized workflows rather than a single monolithic workflow:
+The project uses the following specialized workflows:
 
 ### 1. Daily Update Collector
 
