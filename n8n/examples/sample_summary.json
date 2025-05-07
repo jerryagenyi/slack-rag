@@ -1,0 +1,24 @@
+{
+  "daily_update_id": 1,
+  "summary": "Today, the team member completed the user authentication flow for volunteer registration, fixed 3 dashboard bugs, and merged PR #42 for notifications. They're facing issues with email service integration and need test environment access. Tomorrow, they plan to debug the email integration, start implementing the volunteer matching algorithm, and update registration documentation.",
+  "metadata": {
+    "accomplishments": [
+      "Completed user authentication flow",
+      "Fixed 3 bugs in dashboard",
+      "Reviewed and merged PR #42"
+    ],
+    "blockers": [
+      "Email service integration issues",
+      "Need test environment access"
+    ],
+    "plans": [
+      "Debug email integration",
+      "Implement volunteer matching algorithm",
+      "Update documentation"
+    ],
+    "resources": [
+      "https://github.com/skilledup/platform/pull/42",
+      "https://docs.google.com/document/d/abc123"
+    ]
+  }
+}

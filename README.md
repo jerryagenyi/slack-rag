@@ -78,8 +78,12 @@ For more details on the project structure, see [project-structure.md](docs/proje
 - [Implementation Checklist](docs/implementation-checklist.md)
 - [Project Structure](docs/project-structure.md)
 - [Technical Specifications](docs/technical-specifications.md)
-- [N8N Workflow Template](n8n/workflows/daily_update_summarizer_v1.json)
-- [Reference Workflow](references/Supabase_RAG_AI_Agent.json)
+- [About SkillUp Life](docs/about-skilledup-life.md)
+- [Daily Update Format](docs/daily-update-format.md)
+- [Team Member Management](docs/team-member-management.md)
+- [N8N Workflow Organization](docs/n8n-workflow-organization.md)
+- [Deployment Guide](docs/deployment-guide.md)
+- [Testing Strategy](docs/testing-strategy.md)
 
 ## License
 
