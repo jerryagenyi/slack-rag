@@ -1,0 +1,208 @@
+{
+  "name": "SkillUp Life Daily Update Summarizer (MVP)",
+  "nodes": [
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "triggerOn": "newMessagesOnly",
+        "channel": [
+          "#daily-updates"
+        ],
+        "options": {}
+      },
+      "id": "a1b2c3d4-e5f6-4789-9012-34567890abcd",
+      "name": "Slack Trigger - Daily Updates",
+      "type": "n8n-nodes-base.slackTrigger",
+      "typeVersion": 1,
+      "position": [
+        200,
+        200
+      ],
+      "credentials": {
+        "slackApi": {
+          "id": "YOUR_SLACK_CREDENTIALS_ID",
+          "name": "Your Slack Connection"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.data.user }}",
+              "operation": "in",
+              "value2": "user_id_1,user_id_2,user_id_3"
+            }
+          ]
+        }
+      },
+      "id": "f9876543-210a-4bca-8765-43210fedcba9",
+      "name": "Filter - Product Team Members",
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 1,
+      "position": [
+        450,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $input.all().map(item => item.json.data.text).join('\\n\\n') }}",
+        "options": {
+          "systemMessage": "You are an AI assistant tasked with summarizing daily updates from a product team. Please provide a concise, high-level summary following the format outlined in the provided instructions."
+        }
+      },
+      "id": "bcdefa01-2345-4678-9abc-def012345678",
+      "name": "Prepare Summary Prompt",
+      "type": "n8n-nodes-langchain.promptTemplate",
+      "typeVersion": 1,
+      "position": [
+        700,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "model": "gpt-4o-mini",
+        "options": {}
+      },
+      "id": "98765432-10fe-4dcba-9876-543210fedcba",
+      "name": "OpenAI - Summarize Updates",
+      "type": "@n8n/n8n-nodes-langchain.llmOpenAi",
+      "typeVersion": 1,
+      "position": [
+        950,
+        200
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "YOUR_OPENAI_CREDENTIALS_ID",
+          "name": "Your OpenAI Connection"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "channel": "#product-updates-summary",
+        "text": "## Daily Product Update Summary:\n\n{{ $json.completion }}",
+        "options": {}
+      },
+      "id": "ef012345-6789-4abc-def0-123456789abc",
+      "name": "Slack - Post Summary",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 1,
+      "position": [
+        1200,
+        200
+      ],
+      "credentials": {
+        "slackApi": {
+          "id": "YOUR_SLACK_CREDENTIALS_ID",
+          "name": "Your Slack Connection"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "insert",
+        "table": "daily_updates",
+        "columns": [
+          {
+            "column": "slack_user_id",
+            "value": "={{ $json.data.user }}"
+          },
+          {
+            "column": "update_text",
+            "value": "={{ $json.data.text }}"
+          },
+          {
+            "column": "timestamp",
+            "value": "={{ $json.data.ts }}"
+          },
+          {
+            "column": "summary",
+            "value": "={{ $json.completion }}"
+          }
+        ]
+      },
+      "id": "2b3c4d5e-6f78-4901-a2b3-c4d5e6f7890a",
+      "name": "Supabase - Store Updates",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1450,
+        200
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "YOUR_SUPABASE_CREDENTIALS_ID",
+          "name": "Your Supabase Connection"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Slack Trigger - Daily Updates": {
+      "main": [
+        [
+          {
+            "node": "Filter - Product Team Members",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter - Product Team Members": {
+      "main": [
+        [
+          {
+            "node": "Prepare Summary Prompt",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Summary Prompt": {
+      "main": [
+        [
+          {
+            "node": "OpenAI - Summarize Updates",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI - Summarize Updates": {
+      "main": [
+        [
+          {
+            "node": "Slack - Post Summary",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Supabase - Store Updates",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "your-unique-version-id"
+}
