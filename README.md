@@ -75,9 +75,11 @@ For more details on the project structure, see [project-structure.md](docs/proje
 
 - [Product Requirements Document](docs/prd.md)
 - [Implementation Plan](docs/plan.md)
+- [Implementation Checklist](docs/implementation-checklist.md)
 - [Project Structure](docs/project-structure.md)
 - [Technical Specifications](docs/technical-specifications.md)
 - [N8N Workflow Template](n8n/workflows/daily_update_summarizer_v1.json)
+- [Reference Workflow](references/Supabase_RAG_AI_Agent.json)
 
 ## License
 

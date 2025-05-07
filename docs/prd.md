@@ -130,8 +130,11 @@ GitHub will be used for version control of N8N workflow JSON exports, managed th
 
 ## 9. Next Steps
 
-1. Set up Supabase project and enable pgvector
-2. Install and configure N8N
-3. Create Slack App and obtain necessary credentials
-4. Import and modify the workflow template
-5. Start building the core functionality of the MVP
+For detailed implementation steps and progress tracking, refer to the [Implementation Checklist](implementation-checklist.md). This checklist breaks down all the tasks required to implement this project, including:
+
+1. Setting up Supabase with pgvector
+2. Configuring Slack integration
+3. Setting up OpenAI API access
+4. Installing and configuring N8N
+5. Implementing the workflow
+6. Testing and deployment

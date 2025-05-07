@@ -1,5 +1,7 @@
 {
   "name": "SkillUp Life Daily Update Summarizer (MVP)",
+  "description": "This workflow is adapted from the Supabase_RAG_AI_Agent.json reference workflow. It monitors Slack for daily updates, summarizes them using OpenAI, and stores them in Supabase with vector embeddings.",
+  "referenceDocument": "references/Supabase_RAG_AI_Agent.json",
   "nodes": [
     {
       "parameters": {
